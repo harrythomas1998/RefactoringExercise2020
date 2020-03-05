@@ -16,7 +16,6 @@ public class AdminSelected {
             {
                 int reply  = JOptionPane.showConfirmDialog(null, null, "Incorrect Username. Try again?", JOptionPane.YES_NO_OPTION);
                 if (reply == JOptionPane.YES_OPTION) {
-                    loop = true;
                 }
                 else if(reply == JOptionPane.NO_OPTION)
                 {

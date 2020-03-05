@@ -1,5 +1,4 @@
 import javax.swing.*;
-import java.util.ArrayList;
 
 public class CustomerSelected implements CustomerArrayInterface {
 
@@ -27,11 +26,10 @@ public class CustomerSelected implements CustomerArrayInterface {
                 }
             }
 
-            if(found == false)
+            if(!found)
             {
                 int reply  = JOptionPane.showConfirmDialog(null, null, "User not found. Try again?", JOptionPane.YES_NO_OPTION);
                 if (reply == JOptionPane.YES_OPTION) {
-                    loop = true;
                 }
                 else if(reply == JOptionPane.NO_OPTION)
                 {
@@ -75,7 +73,7 @@ public class CustomerSelected implements CustomerArrayInterface {
         {
             menu.f.dispose();
             loop = false;
-            menu.customer(customer);
+            menu.customer();
         }
     }
 }
