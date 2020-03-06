@@ -3,15 +3,15 @@ import java.awt.event.*;
 import java.util.*;
 import javax.swing.*;
 
-public class Menu extends JFrame {
+public class Menu extends JFrame implements MenuInterface {
 
-	private ArrayList<Customer> customerList = new ArrayList<>();
-	private ArrayList<CustomerAccount> accounts = new ArrayList<> ();
-	private ArrayList<AccountTransaction> transactionList = new ArrayList<>();
-	private int position = 0;
+
 	private String password;
-	private Customer customer = null;
-	private CustomerAccount acc = new CustomerAccount();
+	int position = 0;
+	Customer customer = null;
+	CustomerAccount acc = new CustomerAccount();
+
+
 	JFrame f, f1;
 	JLabel firstNameLabel, surnameLabel, pPPSLabel, dOBLabel;
 	JTextField firstNameTextField, surnameTextField, pPSTextField, dOBTextField;
@@ -19,10 +19,11 @@ public class Menu extends JFrame {
 	JTextField customerIDTextField, passwordTextField;
 	Container content;
 	Customer e;
-
 	JPanel panel2;
 	JButton add;
 	String 	PPS,firstName,surname,DOB,CustomerID;
+
+
 
 	public static void main(String[] args)
 	{
@@ -154,8 +155,6 @@ public class Menu extends JFrame {
 				f1.setVisible(true);
 
 			}
-
-
 			//------------------------------------------------------------------------------------------------------------------
 
 			//if user select ADMIN----------------------------------------------------------------------------------------------
@@ -214,7 +213,8 @@ public class Menu extends JFrame {
 
 				if(cont)
 				{
-					f1.dispose();
+
+					loop = false;
 					admin();
 				}
 			}
@@ -300,7 +300,7 @@ public class Menu extends JFrame {
 
 	public void admin()
 	{
-		dispose();
+
 
 		f = new JFrame("Administrator Menu");
 		f.setSize(400, 400);
@@ -685,18 +685,7 @@ public class Menu extends JFrame {
 							}
 						});
 
-						firstNameLabel = new JLabel("First Name:", SwingConstants.LEFT);
-						surnameLabel = new JLabel("Surname:", SwingConstants.LEFT);
-						pPPSLabel = new JLabel("PPS Number:", SwingConstants.LEFT);
-						dOBLabel = new JLabel("Date of birth", SwingConstants.LEFT);
-						customerIDLabel = new JLabel("CustomerID:", SwingConstants.LEFT);
-						passwordLabel = new JLabel("Password:", SwingConstants.LEFT);
-						firstNameTextField = new JTextField(20);
-						surnameTextField = new JTextField(20);
-						pPSTextField = new JTextField(20);
-						dOBTextField = new JTextField(20);
-						customerIDTextField = new JTextField(20);
-						passwordTextField = new JTextField(20);
+						setLabels();
 
 						JPanel textPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
 
@@ -839,18 +828,7 @@ public class Menu extends JFrame {
 				gridPanel = new JPanel(new GridLayout(8, 2));
 				cancelPanel = new JPanel();
 
-				firstNameLabel = new JLabel("First Name:", SwingConstants.LEFT);
-				surnameLabel = new JLabel("Surname:", SwingConstants.LEFT);
-				pPPSLabel = new JLabel("PPS Number:", SwingConstants.LEFT);
-				dOBLabel = new JLabel("Date of birth", SwingConstants.LEFT);
-				customerIDLabel = new JLabel("CustomerID:", SwingConstants.LEFT);
-				passwordLabel = new JLabel("Password:", SwingConstants.LEFT);
-				firstNameTextField = new JTextField(20);
-				surnameTextField = new JTextField(20);
-				pPSTextField = new JTextField(20);
-				dOBTextField = new JTextField(20);
-				customerIDTextField = new JTextField(20);
-				passwordTextField = new JTextField(20);
+				setLabels();
 
 				first = new JButton("First");
 				previous = new JButton("Previous");
@@ -961,7 +939,7 @@ public class Menu extends JFrame {
 						}
 					}
 
-					if(found == false)
+					if(!found)
 					{
 						int reply  = JOptionPane.showConfirmDialog(null, null, "User not found. Try again?", JOptionPane.YES_NO_OPTION);
 						switch (reply) {
@@ -1046,7 +1024,7 @@ public class Menu extends JFrame {
 					}
 
 
-					if(found == false)
+					if(!found)
 					{
 						int reply  = JOptionPane.showConfirmDialog(null, null, "User not found. Try again?", JOptionPane.YES_NO_OPTION);
 						if (reply == JOptionPane.YES_OPTION) {
@@ -1089,7 +1067,7 @@ public class Menu extends JFrame {
 					}
 				}
 
-				if(found == false)
+				if(!found)
 				{
 					int reply  = JOptionPane.showConfirmDialog(null, null, "User not found. Try again?", JOptionPane.YES_NO_OPTION);
 					if (reply == JOptionPane.YES_OPTION) {
@@ -1300,7 +1278,8 @@ public class Menu extends JFrame {
 							}
 						}
 
-					}		if(on)
+					}
+					if(on)
 					{
 						String balanceTest = JOptionPane.showInputDialog(f, "Enter amount you wish to lodge:");//the isNumeric method tests to see if the string entered was numeric.
 						if(IsNumeric.isNumeric(balanceTest))
@@ -1440,6 +1419,22 @@ public class Menu extends JFrame {
 		dOBTextField.setText(customerList.get(0).getDOB());
 		customerIDTextField.setText(customerList.get(0).getCustomerID());
 		passwordTextField.setText(customerList.get(0).getPassword());
+	}
+
+	public void setLabels(){
+
+		firstNameLabel = new JLabel("First Name:", SwingConstants.LEFT);
+		surnameLabel = new JLabel("Surname:", SwingConstants.LEFT);
+		pPPSLabel = new JLabel("PPS Number:", SwingConstants.LEFT);
+		dOBLabel = new JLabel("Date of birth", SwingConstants.LEFT);
+		customerIDLabel = new JLabel("CustomerID:", SwingConstants.LEFT);
+		passwordLabel = new JLabel("Password:", SwingConstants.LEFT);
+		firstNameTextField = new JTextField(20);
+		surnameTextField = new JTextField(20);
+		pPSTextField = new JTextField(20);
+		dOBTextField = new JTextField(20);
+		customerIDTextField = new JTextField(20);
+		passwordTextField = new JTextField(20);
 	}
 
 }
